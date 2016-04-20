@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong>Title:</strong>
+    <%= @blog_post.title %></h3>
+  </div>
+  <div class="panel-body">
+    <p>
+		  <strong>Author:</strong>
+		  <%= @blog_post.author %>
+		</p>
+
+		<p>
+		  <strong>Blog entry:</strong>
+		  <%= @blog_post.blog_entry %>
+		</p>
+
+  </div>
+</div>
+
+
+
+<div>
+  <%= render 'comments/form' %>
+</div>
+
+
+	<h5><strong>Comments</strong></h5>
+	<% @blog_post.comments.each do |comment| %>
+		<div class="well well-sm">
+			<p><strong>Author: </strong><%= comment.author %></p>
+			<p><strong>Entry: </strong><%= comment.comment_entry %></p>
+			<p><strong>Created: </strong><%= local_time(comment.created_at) %></p>
+		</div>
+	<% end %>
+
+
+
+<div class="btn-group-sm" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_blog_post_path(@blog_post) %></button>
+  <button type="button" class="btn btn-default"><%= link_to 'Back', blog_posts_path %></button>
+</div>
